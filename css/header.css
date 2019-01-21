@@ -1,0 +1,15 @@
+.title{
+	background-color: black;
+}
+
+.title-color{
+	color: white;
+	font-size: x-large;
+}
+	
+.mui-bar-tab .mui-tab-item.mui-active{
+	color: ghostwhite;
+}
+.mui-bar-tab {
+	background-color: black;
+}
