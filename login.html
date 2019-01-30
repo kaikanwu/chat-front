@@ -122,8 +122,9 @@
 						var cid = plus.push.getClientInfo().clientid;
 						// 与后端联调
 						console.log("333333");
-//app.serverUrl + "/user/registerOrLogin"
-						mui.ajax('http://localhost:8089/user/registerOrLogin', {
+						
+						//app.serverUrl + "/user/registerOrLogin"
+						mui.ajax('http://192.168.31.248:8089/user/registerOrLogin', {
 							
 							data:{
 								username: username.value,
@@ -139,7 +140,17 @@
 								//服务器返回响应，根据响应结果，分析是否登录成功；
 								console.log("44444");
 								console.log(JSON.stringify(data));
-							}
+								
+								if(data.status == 200){
+									mui.openWindow("index.html", "index.html");
+								}
+							},
+							error:function(xhr,type,errorThrown){
+									//异常处理；
+									console.log("something wrong!")
+									console.log(type);
+							}							
+							
 						});
 						
 					}

@@ -142,7 +142,8 @@
 			"login.html": {
 				"resources": [],
 				"refer": [
-					"login.html"
+					"login.html",
+					"index.html"
 				],
 				"priority": 0
 			}

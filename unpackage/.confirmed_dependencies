@@ -1,18 +1,19 @@
 {
-  "index.html": {
-    "resources": [
-      "tab-chatlist.html"
-    ],
-    "refer": [
-      "tab-discover.html",
-      "tab-contacts.html",
-      "tab-chatlist.html",
-      "tab-me.html"
-    ]
-  },
-  "login.html": {
-    "refer": [
-      "login.html"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"tab-chatlist.html"
+		],
+		"refer": [
+			"tab-discover.html",
+			"tab-contacts.html",
+			"tab-chatlist.html",
+			"tab-me.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"login.html",
+			"index.html"
+		]
+	}
 }
