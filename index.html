@@ -18,6 +18,8 @@
     </script>
 </head>
 <body>
+	
+	mui('body').on('tap','a',function(){document.location.href=this.href;});
 	<header class="mui-bar mui-bar-nav title">
 	    <h1 class="mui-title title-color"><b>Chat</b></h1>
 	</header>
@@ -70,6 +72,12 @@
 		}
 		
 		mui.plusReady(function(){
+			
+		
+			
+			mui.back = function() {
+				return false;
+			}
 			
 			// 获取当前的 webview 对象
 			var indexWebview = plus.webview.currentWebview();

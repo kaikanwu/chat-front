@@ -85,11 +85,12 @@
 			mui.plusReady(function() {
 				
 				// 判断用户是否注册登录过，如果本地内存有全局的用户对象，此时直接跳转到首页
-//				var userInfo = app.getUserGlobalInfo();
-//				if (userInfo != null) {
-//					// 页面跳转
-//					mui.openWindow("index.html", "index.html");
-//				}
+				var userInfo = app.getUserGlobalInfo();
+				if (userInfo != null) {
+					// 页面跳转
+					console.log("come here!");
+					mui.openWindow("index.html", "index.html");
+				}
 				
 				var userform = document.getElementById("userform");
 				var username = document.getElementById("username");
@@ -97,8 +98,7 @@
 				
 				//当点击 登陆/注册 button 时触发判断
 				userform.addEventListener("submit", function(e){
-					
-					console.log("11111");
+
 					// 判断用户名是否为空，如果为空则让其获得焦点
 					if (!app.isNotNull(username.value)) {
 						// 获取焦点
@@ -115,16 +115,12 @@
 							app.showToast("你的密码过长", "error");
 							return false;
 						}
-						console.log("222222");
-
 						
 						// 获取每台手机的唯一cid
 						var cid = plus.push.getClientInfo().clientid;
-						// 与后端联调
-						console.log("333333");
 						
-						//app.serverUrl + "/user/registerOrLogin"
-						mui.ajax('http://192.168.31.248:8089/user/registerOrLogin', {
+						// 与后端联调
+						mui.ajax( app.serverUrl + '/user/registerOrLogin', {
 							
 							data:{
 								username: username.value,
@@ -138,11 +134,21 @@
 							
 							success:function(data){
 								//服务器返回响应，根据响应结果，分析是否登录成功；
-								console.log("44444");
 								console.log(JSON.stringify(data));
 								
+								username.blur();
+								txt_password.blur();
+								
+								
 								if(data.status == 200){
+									
+									// 成功后（返回码 200）在手机端进行保存后端传递过来的 vo 对象
+									var userInfoJson = data.data;
+									app.setUserGlobalInfo(userInfoJson);
+									
 									mui.openWindow("index.html", "index.html");
+								}else{
+									app.showToast(data.msg, "error");
 								}
 							},
 							error:function(xhr,type,errorThrown){
